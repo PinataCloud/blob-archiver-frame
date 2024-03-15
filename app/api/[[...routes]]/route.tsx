@@ -15,7 +15,7 @@ const app = new Frog({
   // hubApiUrl: 'https://api.hub.wevm.dev',
 });
 
-app.use('/', fdk.analyticsMiddleware({ frameId: 'blob-uploader'}))
+app.use('/upload', fdk.analyticsMiddleware({ frameId: 'blob-uploader'}))
 
 const uploadFile = async (url: any) => {
   try {
