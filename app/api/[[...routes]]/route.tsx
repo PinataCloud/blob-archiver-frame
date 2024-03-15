@@ -85,6 +85,7 @@ app.frame("/", (c) => {
       <TextInput placeholder="Blobscan Link" />,
       <Button>Upload</Button>,
     ],
+    title: "Blob Archiver"
   });
 });
 
@@ -103,6 +104,7 @@ app.frame("/upload", async (c) => {
       <Button.Link href={`${link}`}>View on IPFS</Button.Link>,
       <Button.Link href='https://www.pinata.cloud/ipfs'>Learn More</Button.Link>
     ],
+    title: "Blob Archiver"
   });
 });
 
