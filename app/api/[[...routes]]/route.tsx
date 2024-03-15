@@ -20,8 +20,7 @@ const uploadFile = async (url: any) => {
       const urlStream = await fetch(`https://api.blobscan.com/blobs/${hash}`);
       const arrayBuffer = await urlStream.arrayBuffer();
       const blob = new Blob([arrayBuffer], { type: "application/json" });
-      const file = new File([blob], "blob.json", { type: "application/json" });
-      data.append("file", file);
+      data.append("file", blob);
     } else {
       const tx = await fetch(`https://api.blobscan.com/transactions/${hash}`);
       const txData = await tx.json();
@@ -37,10 +36,7 @@ const uploadFile = async (url: any) => {
           const blobFile = new Blob([arrayBuffer], {
             type: "application/json",
           });
-          const file = new File([blobFile], `blob_${index}.json`, {
-            type: "application/json",
-          });
-          blobs.push(file);
+          blobs.push(blobFile);
         }),
       );
       Array.from(blobs).forEach((blob: any) => {
