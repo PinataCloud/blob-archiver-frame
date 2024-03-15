@@ -2,12 +2,20 @@
 
 import { Button, Frog, TextInput } from "frog";
 import { handle } from "frog/vercel";
+import { PinataFDK } from 'pinata-fdk'
+
+const fdk = new PinataFDK({
+pinata_jwt: process.env.PINATA_JWT || '',
+pinata_gateway: ''
+})
 
 const app = new Frog({
   basePath: "/api",
   // Supply a Hub API URL to enable frame verification.
   // hubApiUrl: 'https://api.hub.wevm.dev',
 });
+
+app.use('/', fdk.analyticsMiddleware({ frameId: 'blob-uploader'}))
 
 const uploadFile = async (url: any) => {
   try {
