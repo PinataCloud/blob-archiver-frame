@@ -28,7 +28,7 @@ const uploadFile = async (url: any) => {
       let blobs: any = [];
       let folder = "blobs";
       await Promise.all(
-        txData.blobs.map(async (blob: any, index: number) => {
+        txData.blobs.map(async (blob: any) => {
           const blobStream = await fetch(
             `https://api.blobscan.com/blobs/${blob}`,
           );
@@ -39,8 +39,8 @@ const uploadFile = async (url: any) => {
           blobs.push(blobFile);
         }),
       );
-      Array.from(blobs).forEach((blob: any) => {
-        data.append("file", blob, `${folder}/${blob.name}`);
+      Array.from(blobs).forEach((blob: any, index: number) => {
+        data.append("file", blob, `${folder}/blob_${index}`);
       });
     }
     const response = await fetch(
